@@ -8,9 +8,15 @@ export const getCandidates = async (email: string) => {
 
         console.log('Candidates fetched successfully:', response.data);
         
-        return response.data;
+        return {
+            ok: true,
+            data: response.data,
+        };
     } catch (error) {
         console.error('Error fetching candidates:', error);
-        return false;
+        return {
+            ok: false,
+            error: 'Error searching for candidate.',
+        };
     }
 }
