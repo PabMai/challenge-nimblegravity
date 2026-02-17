@@ -1,18 +1,18 @@
 import { useAppStore } from "@/shared/stores/appStore";
-import { getPostulations } from "@features/job";
+import { getJobs } from "@features/job";
 
 export const useJob = () => {
     const { setToast } = useAppStore();
 
-    const loadPostulations = async () => {
-        const response = await getPostulations();
-        console.log('Postulations found:', response);
+    const loadJobs = async () => {
+        const response = await getJobs();
+        console.log('Jobs found:', response);
 
         if (!response.ok) {
-            console.warn('No postulations found');
+            console.warn('No jobs found');
             setToast({
                 type: 'error',
-                message: response.error || 'No postulations found.',
+                message: response.error || 'No jobs found.',
             });
 
             return;
@@ -25,6 +25,6 @@ export const useJob = () => {
     };
 
     return {
-        loadPostulations,
+        loadJobs,
     };
 };

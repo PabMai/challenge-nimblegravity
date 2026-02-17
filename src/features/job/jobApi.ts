@@ -1,23 +1,24 @@
 import { httpClient } from "@/config";
+import type { Job } from "@/shared/models";
 
 const JOB_API_URL = '/api/jobs';
 
-export const getPostulations = async () => {
+export const getJobs = async () => {
     try {
         const response = await httpClient
-            .get(JOB_API_URL + '/get-list');
+            .get<{ jobs: Job[] }>(JOB_API_URL + '/get-list');
 
-        console.log('Postulations fetched successfully:', response.data);
+        console.log('Jobs fetched successfully:', response.data);
 
         return {
             ok: true,
             data: response.data,
         };
     } catch (error) {
-        console.error('Error fetching postulations:', error);
+        console.error('Error fetching jobs:', error);
         return {
             ok: false,
-            error: 'Error fetching postulations.',
+            error: 'Error fetching jobs.',
         };
     }
 }
