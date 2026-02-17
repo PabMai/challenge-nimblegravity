@@ -1,4 +1,5 @@
 import { httpClient } from "@/config";
+import type { Postulation } from "@/shared/models";
 
 const CANDIDATE_API_URL = '/api/candidate';
 
@@ -21,3 +22,23 @@ export const getCandidates = async (email: string) => {
         };
     }
 }
+
+export const postCandidate = async (postulation: Postulation) => {
+    try {
+        const response = await httpClient
+            .post(CANDIDATE_API_URL + '/apply-to-job', postulation);
+
+        console.log('Candidate posted successfully:', response.data);
+
+        return {
+            ok: true,
+            data: response.data,
+        };
+    } catch (error) {
+        console.error('Error posting candidate:', error);
+        return {
+            ok: false,
+            error: 'Error posting candidate.',  
+        };
+     }
+ }

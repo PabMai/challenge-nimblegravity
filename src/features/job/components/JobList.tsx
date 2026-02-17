@@ -1,8 +1,9 @@
-import type { Job } from "@/shared/models";
-import { JobCard } from "./JobCard";
-import { useJob } from "@features/job";
 import { useEffect, useState } from "react";
+
+import { JobCard } from "./JobCard";
 import { useAppStore } from "@/shared/stores/appStore";
+import { useJob } from "@features/job";
+import type { Job } from "@/shared/models";
 
 export function JobList() {
     const {setIsLoading} = useAppStore();
