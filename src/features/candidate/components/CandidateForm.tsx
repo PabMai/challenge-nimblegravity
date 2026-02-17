@@ -2,7 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 
 import { useCandidate } from "@features/candidate";
 import { useAppStore } from "@/shared/stores/appStore";
-import { Button } from "@/shared/ui";
+import { Alert, Button } from "@/shared/ui";
 
 type Inputs = {
   email: string;
@@ -17,18 +17,20 @@ export function CandidateForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<Inputs>();
 
   const { searchCandidate } = useCandidate();
 
   const onSubmit: SubmitHandler<Inputs> = ({email}) => {
+    reset();
     setIsLoading(true);
     searchCandidate(email);
     setIsLoading(false);
   }
 
   return (
-    <form className="max-w-md8" onSubmit={handleSubmit(onSubmit)}>
+    <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
       <div className="text-lg font-semibold mb-4">Candidate information</div>
       <div className="mb-4">
         <label
@@ -37,17 +39,21 @@ export function CandidateForm() {
         >
           Email
         </label>
-        <div className="flex gap-2 mt-1">
-          <input
-            type="email"
-            className="flex-1 block border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-            placeholder="Enter candidate email"
-            {...register("email", { required: true })}
-          />
-          <Button text="Search" type="submit" disabled={isLoading} />
+        <div className="flex gap-2 mt-1 w-full md:w-1/2">
+            <input
+              type="email"
+              className="h-10 border border-default rounded-base block px-3 sm:text-sm w-full"
+              placeholder="Enter candidate email"
+              {...register("email", {
+                required: true,
+              })}
+            />
+            <Button text="Search" type="submit" disabled={isLoading} />
         </div>
         {errors.email && (
-          <span className="text-red-500 text-sm mt-1">Email is required</span>
+            <Alert type="error">
+                Email is required
+            </Alert>
         )}
       </div>
     </form>
