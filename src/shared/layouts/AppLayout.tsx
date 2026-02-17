@@ -1,4 +1,4 @@
-import { Navbar } from "@/shared/ui/Navbar";
+import { Navbar, SpinnerScreen, Toast } from "@/shared/ui";
 
 export function AppLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -7,6 +7,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
             <main className="pt-16 px-4">
                 {children}
             </main>
+            <SpinnerScreen />
+            <Toast />
         </div>
     );
 }

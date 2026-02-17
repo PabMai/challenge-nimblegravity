@@ -5,7 +5,7 @@ interface ButtonProps {
     disabled?: boolean;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text, onClick, disabled = false, type = "button" }) => {
+export function Button({ text, onClick, disabled = false, type = "button" }: ButtonProps) {
     return (
         <button
             className={`px-4 py-2 btn-primary ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`}
