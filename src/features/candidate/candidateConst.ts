@@ -1,1 +1,0 @@
-export const CANDIDATE_API_URL = '/api/candidate';

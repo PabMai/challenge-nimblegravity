@@ -1,5 +1,6 @@
 import { httpClient } from "@/config";
-import { CANDIDATE_API_URL } from "@features/candidate";
+
+const CANDIDATE_API_URL = '/api/candidate';
 
 export const getCandidates = async (email: string) => {
     try {
