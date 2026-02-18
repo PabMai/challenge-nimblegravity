@@ -1,6 +1,6 @@
 import { Alert, Button } from "@/shared/ui";
-import { useCandidate } from "@/features/candidate";
-import type { Job, Postulation } from "@/shared/models";
+import { type Job, type Postulation } from "@/shared/models";
+import { useCandidate, useCandidateStore } from "@/features/candidate";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface JobCardProps {
@@ -19,21 +19,28 @@ export function JobCard({ job }: JobCardProps) {
     formState: { errors },
     reset,
   } = useForm<Inputs>();
-  
-  //const { applyJob } = useCandidate();
-  //const postulation: Postulation = {} as Postulation;
+
+  const { applyJob, withoutCandidate } = useCandidate();
+  const candidate = useCandidateStore((state) => state.candidate);
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     reset();
     console.log("Applying to job with data:", data);
+
+    if (!candidate) {
+      withoutCandidate();
+      return;
+    }
+
     const postulation: Postulation = {
       jobId: job.id,
       repoUrl: data.githubUrl,
+      candidateId: candidate.candidateId,
     };
+
     console.log("Constructed postulation object:", postulation);
     //applyJob(postulation);
-    };
-  
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -45,7 +52,7 @@ export function JobCard({ job }: JobCardProps) {
 
         <input
           type="text"
-          className="w-full p-2 border mb-4 border-default rounded-base sm:text-sm"
+          className="w-full p-2 border border-default rounded-base sm:text-sm"
           placeholder="Enter GitHub URL"
           {...register("githubUrl", {
             required: true,
@@ -53,12 +60,10 @@ export function JobCard({ job }: JobCardProps) {
         />
 
         {errors.githubUrl && (
-          <Alert type="error">
-            GitHub URL is required.
-          </Alert>
+          <Alert type="error">GitHub URL is required.</Alert>
         )}
 
-        <div className="flex justify-end">
+        <div className="flex justify-end mt-4">
           <Button text="Apply" type="submit" />
         </div>
       </div>

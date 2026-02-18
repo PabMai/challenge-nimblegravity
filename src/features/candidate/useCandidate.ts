@@ -1,6 +1,6 @@
 import { getCandidates, postCandidate, useCandidateStore } from "@features/candidate";
 import { useAppStore } from "@/shared/stores/useAppStore";
-import type { Postulation } from "@/shared/models"
+import { PostulationSchema, type Postulation } from "@/shared/models"
 
 export const useCandidate = () => {
   const { setToast } = useAppStore();
@@ -30,6 +30,20 @@ export const useCandidate = () => {
   };
 
   const applyJob = async (postulation: Postulation) => {
+
+    const result = PostulationSchema.safeParse(postulation);
+
+    if (!result.success) {
+      console.error("Invalid postulation data:", result.error);
+
+      setToast({
+        type: "error",
+        message: "Invalid postulation data.",
+      });
+
+      return;
+    }
+
     const response = await postCandidate(postulation);
     console.log("Candidate applied successfully:", response);
 
@@ -49,8 +63,16 @@ export const useCandidate = () => {
     });
   };
 
+  const withoutCandidate = () => {
+    setToast({
+      type: "error",
+      message: "No candidate information found. Please search for a candidate before applying.",
+    });
+  }
+
   return {
     searchCandidate,
     applyJob,
+    withoutCandidate,
   };
 };

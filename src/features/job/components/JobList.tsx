@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { JobCard } from "./JobCard";
-import { useAppStore } from "@/shared/stores/useAppStore";
 import { JobNotFound, useJob } from "@features/job";
+import { useAppStore } from "@/shared/stores/useAppStore";
 import type { Job } from "@/shared/models";
 
 export function JobList() {
