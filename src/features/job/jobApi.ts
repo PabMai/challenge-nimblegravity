@@ -8,8 +8,6 @@ export const getJobs = async () => {
         const response = await httpClient
             .get<{ jobs: Job[] }>(JOB_API_URL + '/get-list');
 
-        console.log('Jobs fetched successfully:', response.data);
-
         return {
             ok: true,
             data: response.data,

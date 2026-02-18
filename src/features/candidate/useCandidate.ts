@@ -8,7 +8,6 @@ export const useCandidate = () => {
 
   const searchCandidate = async (email: string) => {
     const candidate = await getCandidates(email);
-    console.log("Candidate found:", candidate);
 
     if (!candidate.ok) {
       console.warn("No candidate found for email:", email);
@@ -45,7 +44,6 @@ export const useCandidate = () => {
     }
 
     const response = await postCandidate(postulation);
-    console.log("Candidate applied successfully:", response);
 
     if (!response.ok) {
       console.warn("Error applying candidate to job:", response.error);

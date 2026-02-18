@@ -26,7 +26,6 @@ export function JobCard({ job }: JobCardProps) {
 
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     reset();
-    console.log("Applying to job with data:", data);
 
     if (!candidate) {
       withoutCandidate();
@@ -39,8 +38,7 @@ export function JobCard({ job }: JobCardProps) {
       candidateId: candidate.candidateId,
     };
 
-    console.log("Constructed postulation object:", postulation);
-    //applyJob(postulation);
+    applyJob(postulation);
   };
 
   return (

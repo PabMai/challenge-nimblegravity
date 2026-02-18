@@ -6,7 +6,6 @@ export const useJob = () => {
 
     const loadJobs = async () => {
         const response = await getJobs();
-        console.log('Jobs found:', response);
 
         if (!response.ok) {
             console.warn('No jobs found');
