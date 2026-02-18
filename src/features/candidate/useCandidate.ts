@@ -3,8 +3,8 @@ import { useAppStore } from "@/shared/stores/useAppStore";
 import { PostulationSchema, type Postulation } from "@/shared/models"
 
 export const useCandidate = () => {
-  const { setToast } = useAppStore();
-  const { setCandidate } = useCandidateStore();
+  const setToast = useAppStore((state) => state.setToast);
+  const setCandidate = useCandidateStore((state) => state.setCandidate);
 
   const searchCandidate = async (email: string) => {
     const candidate = await getCandidates(email);

@@ -2,6 +2,7 @@ import { useAppStore } from "@/shared/stores/useAppStore";
 
 export function SpinnerScreen() {
   const isLoading = useAppStore((state) => state.isLoading);
+
   if (!isLoading) return null;
 
   return (

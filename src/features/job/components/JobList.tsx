@@ -6,7 +6,7 @@ import { useAppStore } from "@/shared/stores/useAppStore";
 import type { Job } from "@/shared/models";
 
 export function JobList() {
-    const {setIsLoading} = useAppStore();
+    const setIsLoading = useAppStore((state) => state.setIsLoading);
     const { loadJobs } = useJob();
     const [jobsResponse, setJobsResponse] = useState<{ ok: boolean; data?: Job[] } | null>(null);
 
