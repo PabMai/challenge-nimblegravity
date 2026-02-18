@@ -8,7 +8,11 @@
   - TypeScript
   - Vite
   - ESLint (configuración básica)
-
+  - Axios
+  - React Hook Form
+  - TailwindCSS
+  - Zod
+  - Zustand
 
 ## Instrucciones de inicio para desarrollo
 
@@ -23,7 +27,6 @@ Luego, instala las dependencias y ejecuta el servidor de desarrollo:
 ## Comandos (desarrollo)
 
   Ejecuta los siguientes comandos desde la raíz del proyecto:
-
 
   ```bash
   # Usando npm
@@ -43,6 +46,8 @@ Luego, instala las dependencias y ejecuta el servidor de desarrollo:
 
 Referecias:
 - [axios](https://axios-http.com/es/docs)
+- [react hook form](https://react-hook-form.com/get-started)
 - [tailwindcss](https://tailwindcss.com/docs)
 - [vite](https://vite.dev/guide)
 - [zod](https://zod.dev)
+- [zustand](https://zustand.docs.pmnd.rs)
