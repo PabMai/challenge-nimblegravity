@@ -1,5 +1,6 @@
 import { useAppStore } from "@/shared/stores/useAppStore";
 import { getJobs } from "@features/job";
+import type { Job } from "@/shared/models";
 
 export const useJob = () => {
     const setToast = useAppStore((state) => state.setToast);
@@ -14,7 +15,10 @@ export const useJob = () => {
                 message: response.error || 'No jobs found.',
             });
 
-            return;
+            return {
+                ok: false,
+                data: [] as Job[],
+            };
         }
 
         return {

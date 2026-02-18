@@ -14,6 +14,7 @@ export const getJobs = async () => {
         };
     } catch (error) {
         console.error('Error fetching jobs:', error);
+
         return {
             ok: false,
             error: 'Error fetching jobs.',

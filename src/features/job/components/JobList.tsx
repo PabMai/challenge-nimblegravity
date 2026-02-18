@@ -9,13 +9,19 @@ export function JobList() {
     const setIsLoading = useAppStore((state) => state.setIsLoading);
     const { loadJobs } = useJob();
     const [jobsResponse, setJobsResponse] = 
-        useState<{ ok: boolean; data?: Job[] } | null>(null);
+        useState<{ ok: boolean; data: Job[] } | null>(null);
 
     useEffect(() => {
         const fetchJobs = async () => {
             setIsLoading(true);
-            const response = await loadJobs();
-            setJobsResponse(response);
+            const response = await loadJobs() as { ok: boolean; data: Job[] };
+
+            if (response.ok) {
+                setJobsResponse(response);
+            } else {
+                setJobsResponse(null);
+            }
+            
             setIsLoading(false);
         };
         fetchJobs();
@@ -29,7 +35,7 @@ export function JobList() {
         return <JobNotFound />;
     }
 
-    const jobs = jobsResponse.data as Job[];
+    const jobs = jobsResponse.data;
 
     return (
         <>
