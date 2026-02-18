@@ -36,6 +36,7 @@ export function JobCard({ job }: JobCardProps) {
       jobId: job.id,
       repoUrl: data.githubUrl,
       candidateId: candidate.candidateId,
+      uuid: candidate.uuid,
     };
 
     applyJob(postulation);

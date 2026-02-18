@@ -1,7 +1,7 @@
 import {z} from 'zod';
 
 export const PostulationSchema = z.object({
-    uuid: z.uuid().optional(),
+    uuid: z.uuid(),
     jobId: z.string(),
     candidateId: z.string(),
     repoUrl: z.string()
