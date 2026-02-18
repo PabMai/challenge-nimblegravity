@@ -1,24 +1,29 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 
-import { useCandidate } from "@features/candidate";
-import { useAppStore } from "@/shared/stores/appStore";
+import { useCandidate, useCandidateStore } from "@features/candidate";
+import { useAppStore } from "@/shared/stores/useAppStore";
 import { Alert, Button } from "@/shared/ui";
+
 
 type Inputs = {
   email: string;
   emailRequired: string;
+  EmailFormat: string;
 };
 
 export function CandidateForm() {
   const isLoading = useAppStore((state) => state.isLoading);
   const setIsLoading = useAppStore((state) => state.setIsLoading);
+  const candidate = useCandidateStore((state) => state.candidate);
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<Inputs>();
+
 
   const { searchCandidate } = useCandidate();
 
@@ -27,6 +32,7 @@ export function CandidateForm() {
     setIsLoading(true);
     searchCandidate(email);
     setIsLoading(false);
+    setValue("email", email);
   }
 
   return (
@@ -41,18 +47,30 @@ export function CandidateForm() {
         </label>
         <div className="flex gap-2 mt-1 w-full md:w-1/2">
             <input
-              type="email"
+              type="text"
               className="h-10 border border-default rounded-base block px-3 sm:text-sm w-full"
               placeholder="Enter candidate email"
               {...register("email", {
-                required: true,
+                required: {
+                  value: true,
+                  message: "Email is required"
+                },  
+                pattern: {
+                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                  message: "Invalid email format"
+                }
               })}
             />
             <Button text="Search" type="submit" disabled={isLoading} />
         </div>
         {errors.email && (
             <Alert type="error">
-                Email is required
+                {errors.email.message}
+            </Alert>
+        )}
+        {candidate && Object.keys(errors).length === 0 && (
+            <Alert type="success">
+                Candidate found successfully!
             </Alert>
         )}
       </div>

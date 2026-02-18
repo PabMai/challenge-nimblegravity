@@ -1,9 +1,10 @@
-import { getCandidates, postCandidate } from "@features/candidate";
-import { useAppStore } from "@/shared/stores/appStore";
-import type { Postulation } from "@/shared/models";
+import { getCandidates, postCandidate, useCandidateStore } from "@features/candidate";
+import { useAppStore } from "@/shared/stores/useAppStore";
+import type { Postulation } from "@/shared/models"
 
 export const useCandidate = () => {
   const { setToast } = useAppStore();
+  const { setCandidate } = useCandidateStore();
 
   const searchCandidate = async (email: string) => {
     const candidate = await getCandidates(email);
@@ -20,7 +21,12 @@ export const useCandidate = () => {
       return;
     }
 
-    return candidate;
+    setToast({
+        type: "success",
+        message: "Candidate found successfully!",
+    });
+
+    setCandidate(candidate.data);
   };
 
   const applyJob = async (postulation: Postulation) => {
