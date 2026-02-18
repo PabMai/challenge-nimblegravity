@@ -1,8 +1,8 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 
-import { useCandidate, useCandidateStore } from "@features/candidate";
-import { useAppStore } from "@/shared/stores/useAppStore";
 import { Alert, Button, Input } from "@/shared/ui";
+import { useAppStore } from "@/shared/stores/useAppStore";
+import { useCandidate, useCandidateStore } from "@features/candidate";
 
 type Inputs = {
   email: string;
