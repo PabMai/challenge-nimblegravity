@@ -1,7 +1,8 @@
-import { Alert, Button } from "@/shared/ui";
+import { useForm, type SubmitHandler } from "react-hook-form";
+
+import { Alert, Button, Input } from "@/shared/ui";
 import { type Job, type Postulation } from "@/shared/models";
 import { useCandidate, useCandidateStore } from "@/features/candidate";
-import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface JobCardProps {
   job: Job;
@@ -50,13 +51,10 @@ export function JobCard({ job }: JobCardProps) {
         </h5>
         <p className="text-body mb-2">GitHub Repository URL</p>
 
-        <input
+        <Input
           type="text"
-          className="w-full p-2 border border-default rounded-base sm:text-sm"
           placeholder="Enter GitHub URL"
-          {...register("githubUrl", {
-            required: true,
-          })}
+          {...register("githubUrl", { required: true })}
         />
 
         {errors.githubUrl && (

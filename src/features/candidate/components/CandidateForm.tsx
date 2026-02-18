@@ -2,8 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 
 import { useCandidate, useCandidateStore } from "@features/candidate";
 import { useAppStore } from "@/shared/stores/useAppStore";
-import { Alert, Button } from "@/shared/ui";
-
+import { Alert, Button, Input } from "@/shared/ui";
 
 type Inputs = {
   email: string;
@@ -23,7 +22,6 @@ export function CandidateForm() {
     formState: { errors },
     reset,
   } = useForm<Inputs>();
-
 
   const { searchCandidate } = useCandidate();
 
@@ -46,9 +44,8 @@ export function CandidateForm() {
           Email
         </label>
         <div className="flex gap-2 mt-1 w-full md:w-1/2">
-            <input
+            <Input
               type="text"
-              className="h-10 border border-default rounded-base block px-3 sm:text-sm w-full"
               placeholder="Enter candidate email"
               {...register("email", {
                 required: {
@@ -59,8 +56,9 @@ export function CandidateForm() {
                   value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                   message: "Invalid email format"
                 }
-              })}
+                })}
             />
+
             <Button text="Search" type="submit" disabled={isLoading} />
         </div>
         {errors.email && (
