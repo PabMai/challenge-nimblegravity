@@ -1,4 +1,4 @@
-import { useAppStore } from "@/shared/stores/appStore";
+import { useAppStore } from "@/shared/stores/useAppStore";
 
 export function SpinnerScreen() {
   const isLoading = useAppStore((state) => state.isLoading);

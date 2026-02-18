@@ -12,7 +12,7 @@ export function Alert({ type = "success", children }: AlertProps) {
   return (
     <div
       role="alert"
-      className={`relative flex w-full p-3 text-sm rounded-md ${typeStyles[type]}`}
+      className={`relative flex w-full text-sm mt-2 rounded-md ${typeStyles[type]}`}
     >
       <span>{children}</span>
     </div>

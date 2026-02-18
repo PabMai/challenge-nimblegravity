@@ -1,4 +1,4 @@
-import { useAppStore } from '@/shared/stores/appStore';
+import { useAppStore } from '@/shared/stores/useAppStore';
 import { useEffect } from 'react';
 
 export function Toast() {
