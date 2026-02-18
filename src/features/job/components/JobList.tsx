@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { JobCard } from "./JobCard";
-import { useAppStore } from "@/shared/stores/appStore";
-import { useJob } from "@features/job";
+import { useAppStore } from "@/shared/stores/useAppStore";
+import { JobNotFound, useJob } from "@features/job";
 import type { Job } from "@/shared/models";
 
 export function JobList() {
@@ -25,7 +25,7 @@ export function JobList() {
     }
 
     if (!jobsResponse.ok) {
-        return <div>No jobs found.</div>;
+        return <JobNotFound />;
     }
 
     const jobs = jobsResponse.data as Job[];

@@ -1,4 +1,4 @@
-import { useAppStore } from "@/shared/stores/appStore";
+import { useAppStore } from "@/shared/stores/useAppStore";
 import { getJobs } from "@features/job";
 
 export const useJob = () => {
