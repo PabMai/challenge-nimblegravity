@@ -1,6 +1,6 @@
 import { getCandidates, postCandidate, useCandidateStore } from "@features/candidate";
-import { useAppStore } from "@/shared/stores/useAppStore";
 import { PostulationSchema, type Postulation } from "@/shared/models"
+import { useAppStore } from "@/shared/stores/useAppStore";
 
 export const useCandidate = () => {
   const setToast = useAppStore((state) => state.setToast);

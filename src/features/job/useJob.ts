@@ -1,5 +1,5 @@
-import { useAppStore } from "@/shared/stores/useAppStore";
 import { getJobs } from "@features/job";
+import { useAppStore } from "@/shared/stores/useAppStore";
 import type { Job } from "@/shared/models";
 
 export const useJob = () => {

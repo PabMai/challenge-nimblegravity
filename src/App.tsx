@@ -1,5 +1,5 @@
-import { HomePage } from "@/pages/HomePage"
 import { AppLayout } from "@/shared/layouts/AppLayout"
+import { HomePage } from "@/pages/HomePage"
 
 function App() {
   return (
